@@ -2,7 +2,6 @@ package pages;
 
 import helpMethods.ElementHelper;
 import loggerUtility.LoggerUtility;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -23,14 +22,17 @@ public class CheckoutPage {
 
     public void fillFirstNameElement(String firstNameValue) {
         elementHelper.fillLocator(firstNameElement, firstNameValue);
+        LoggerUtility.infoTest("The user fills the 'First Name' field on checkout information page");
     }
 
     public void fillLastNameElement(String lastNameValue) {
         elementHelper.fillLocator(lastNameElement, lastNameValue);
+        LoggerUtility.infoTest("The user fills the 'Last Name' field on checkout information page");
     }
 
     public void postalCodeElement(String postalCodeValue) {
         elementHelper.fillLocator(postalCodeElement, postalCodeValue);
+        LoggerUtility.infoTest("The user fills the 'Zip/Postal Code' field on checkout information page");
     }
 
     public void verifyCheckoutTotal() {
@@ -55,7 +57,7 @@ public class CheckoutPage {
         String displayedTotalText = driver.findElement(costTotalElement).getText();
         double displayedTotal = Double.parseDouble(displayedTotalText.replaceAll("[^0-9.]", ""));
 
-        // Log pentru debugging
+        // Log
         LoggerUtility.infoTest("Extracted Product Prices Total: " + totalProductPrice);
         LoggerUtility.infoTest("Extracted Tax: " + tax);
         LoggerUtility.infoTest("Expected Total: " + expectedTotal);

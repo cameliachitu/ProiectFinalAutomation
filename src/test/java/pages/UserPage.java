@@ -5,6 +5,7 @@ import locators.UserLocators;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import static locators.UserLocators.*;
 
@@ -40,8 +41,10 @@ public class UserPage {
 
     public void isErrorMessageDisplayed() {
         try {
-            if (driver.findElement(errorElement).isDisplayed()) {
-                LoggerUtility.infoTest("Error message detected on the page");
+            WebElement errorMessageElement = driver.findElement(errorElement);
+            if (errorMessageElement.isDisplayed()) {
+                String errorMessage = errorMessageElement.getText();
+                LoggerUtility.infoTest("Error message detected on the page: " + errorMessage);
             }
         } catch (NoSuchElementException e) {
             LoggerUtility.infoTest("There is no error message on the page");
